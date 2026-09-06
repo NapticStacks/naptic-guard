@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "naptic-guard"
+version = "0.1.0"
+description = "Audit, provision and test Amazon Bedrock Guardrails for AI data governance, privacy enforcement and information security."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Naptic" }]
+keywords = ["bedrock", "guardrails", "ai-security", "data-governance", "privacy", "pii", "prompt-injection"]
+dependencies = ["boto3>=1.34", "click>=8.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+naptic-guard = "naptic_guard.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/naptic_guard"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
